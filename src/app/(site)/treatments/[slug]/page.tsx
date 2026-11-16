@@ -73,7 +73,7 @@ async function Treatment({ params }: Pick<PageProps<"/treatments/[slug]">, "para
 
         <div className="flex flex-col justify-center">
           <nav aria-label="Breadcrumb" className="eyebrow">
-            <Link href="/treatments" className="hover:underline underline-offset-4">
+            <Link href="/treatments" className="tap hover:underline underline-offset-4">
               Treatments
             </Link>
             <span className="mx-2 text-brass" aria-hidden>
@@ -106,7 +106,7 @@ async function Treatment({ params }: Pick<PageProps<"/treatments/[slug]">, "para
         <section className="section border-t border-line">
           <div className="container-page">
             <h2 className="heading">More {service.category.toLowerCase()}</h2>
-            <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-3">
+            <div className="mt-10 grid gap-x-8 gap-y-8 md:mt-12 md:gap-y-14 md:grid-cols-3">
               {others.map((s) => (
                 <TreatmentCard key={s.id} service={s} />
               ))}

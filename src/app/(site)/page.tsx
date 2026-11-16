@@ -53,7 +53,7 @@ export default async function HomePage() {
       />
 
       {/* Hero */}
-      <section className="relative flex min-h-[calc(100svh-4rem)] items-end md:min-h-[calc(100svh-5rem)]">
+      <section className="relative flex min-h-[calc(100svh-8.5rem)] items-end md:min-h-[calc(100svh-5rem)]">
         <Image
           src="/images/hero.jpg"
           alt="A stone bathtub in a quiet, softly lit room"
@@ -63,7 +63,7 @@ export default async function HomePage() {
           className="object-cover saturate-[0.8]"
         />
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
-        <div className="container-page relative pb-14 pt-40 text-paper md:pb-24">
+        <div className="container-page relative pb-10 pt-40 text-paper md:pb-24">
           <p className="eyebrow !text-paper/80">
             {site.name} {site.descriptor}
           </p>
@@ -77,7 +77,7 @@ export default async function HomePage() {
             </ButtonLink>
             <Link
               href="/treatments"
-              className="text-sm underline decoration-paper/50 decoration-1 underline-offset-[6px] hover:decoration-paper"
+              className="tap text-sm underline decoration-paper/50 decoration-1 underline-offset-[6px] hover:decoration-paper"
             >
               View all treatments
             </Link>
@@ -98,7 +98,7 @@ export default async function HomePage() {
               We keep our menu short and our appointments generous. Each treatment is given by an experienced therapist
               in a private room, with time before and after to simply be still.
             </p>
-            <Link href="/about" className="link mt-8 inline-block text-sm font-medium">
+            <Link href="/about" className="link tap mt-6 text-sm font-medium md:mt-8">
               About {site.name}
             </Link>
           </div>
@@ -113,11 +113,11 @@ export default async function HomePage() {
               <p className="eyebrow">Treatments</p>
               <h2 className="heading mt-4">Most loved</h2>
             </div>
-            <Link href="/treatments" className="link text-sm font-medium">
+            <Link href="/treatments" className="link tap text-sm font-medium">
               Full treatment menu
             </Link>
           </div>
-          <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-3">
+          <div className="mt-10 grid gap-x-8 gap-y-8 md:mt-12 md:gap-y-14 md:grid-cols-3">
             {featured.map((s) => (
               <div key={s.id} className="reveal">
                 <TreatmentCard service={s} />
@@ -174,7 +174,7 @@ export default async function HomePage() {
                 </span>
               ))}
             </address>
-            <Link href="/contact" className="link mt-6 inline-block text-sm font-medium">
+            <Link href="/contact" className="link tap mt-4 text-sm font-medium md:mt-6">
               Directions and contact
             </Link>
           </div>

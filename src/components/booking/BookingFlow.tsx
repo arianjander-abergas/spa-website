@@ -146,7 +146,7 @@ function Flow({ services, staff, staffServices, maxDaysAhead, preselectedSlug }:
                 disabled={!done || pending}
                 onClick={() => goTo(n)}
                 aria-current={current ? "step" : undefined}
-                className={`block w-full border-t-2 pt-3 text-left transition-colors ${
+                className={`block min-h-11 w-full border-t-2 pt-3 text-left transition-colors ${
                   current ? "border-ink" : done ? "border-brass hover:border-ink" : "border-line"
                 }`}
               >
@@ -256,9 +256,10 @@ function Flow({ services, staff, staffServices, maxDaysAhead, preselectedSlug }:
               </div>
 
               <StepActions
+                sticky
                 onBack={() => goTo(1)}
                 next={
-                  <Button disabled={!slot} onClick={() => goTo(3)} className="w-full sm:w-auto">
+                  <Button disabled={!slot} onClick={() => goTo(3)} className="w-full max-w-60 sm:w-auto sm:max-w-none">
                     Continue
                   </Button>
                 }
@@ -471,12 +472,32 @@ function StepActions({
   backDisabled,
   next,
   hint,
+  sticky = false,
 }: {
   onBack: () => void;
   backDisabled?: boolean;
   next: React.ReactNode;
   hint?: string;
+  /** On phones, pin Back / hint / Continue to the bottom of the screen so the
+   *  guest never has to scroll past a long list of times to find the button. */
+  sticky?: boolean;
 }) {
+  if (sticky) {
+    return (
+      <div className="sticky bottom-0 z-20 -mx-5 mt-10 border-t border-line bg-paper/95 px-5 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur sm:static sm:mx-0 sm:flex sm:items-center sm:justify-between sm:bg-transparent sm:px-0 sm:pb-0 sm:pt-6 sm:backdrop-blur-none">
+        {hint && <p className="mb-2 text-sm text-stone sm:hidden">{hint}</p>}
+        <div className="flex items-center gap-4 sm:contents">
+          <button type="button" onClick={onBack} disabled={backDisabled} className="link min-h-11 shrink-0 text-sm disabled:opacity-40">
+            Back
+          </button>
+          <div className="flex flex-1 justify-end sm:flex-none sm:items-center sm:gap-5">
+            {hint && <p className="hidden text-sm text-stone sm:block">{hint}</p>}
+            {next}
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="mt-10 flex flex-col-reverse gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
       <button type="button" onClick={onBack} disabled={backDisabled} className="link min-h-11 self-start text-sm disabled:opacity-40">
@@ -553,7 +574,7 @@ function ReviewRow({
       <dt className="eyebrow pt-1">{label}</dt>
       <dd className="min-w-0">{children}</dd>
       <dd>
-        <button type="button" onClick={onChange} disabled={disabled} className="link text-sm disabled:opacity-40">
+        <button type="button" onClick={onChange} disabled={disabled} className="link min-h-11 text-sm disabled:opacity-40">
           Change<span className="sr-only"> {label.toLowerCase()}</span>
         </button>
       </dd>

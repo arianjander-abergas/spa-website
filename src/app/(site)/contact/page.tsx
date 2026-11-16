@@ -31,7 +31,7 @@ export default function ContactPage() {
               ))}
             </address>
             {directions && (
-              <a href={directions} target="_blank" rel="noreferrer" className="link mt-4 inline-block text-sm font-medium">
+              <a href={directions} target="_blank" rel="noreferrer" className="link tap mt-4 text-sm font-medium">
                 Get directions
               </a>
             )}
@@ -40,12 +40,12 @@ export default function ContactPage() {
           <section>
             <h2 className="eyebrow mb-4">Contact</h2>
             <p>
-              <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="link">
+              <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="link tap">
                 {site.phone}
               </a>
             </p>
             <p className="mt-1.5">
-              <a href={`mailto:${site.email}`} className="link">
+              <a href={`mailto:${site.email}`} className="link tap">
                 {site.email}
               </a>
             </p>

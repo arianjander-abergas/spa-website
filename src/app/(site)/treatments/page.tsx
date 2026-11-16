@@ -25,7 +25,7 @@ export default async function TreatmentsPage() {
       {groups.length > 1 && (
         <nav aria-label="Categories" className="mt-10 flex flex-wrap gap-x-8 gap-y-2 border-y border-line py-4 text-sm">
           {groups.map(([category]) => (
-            <a key={category} href={`#${slugify(category)}`} className="hover:underline underline-offset-4">
+            <a key={category} href={`#${slugify(category)}`} className="tap hover:underline underline-offset-4">
               {category}
             </a>
           ))}
@@ -55,7 +55,7 @@ export default async function TreatmentsPage() {
                       {formatDuration(s.duration_min)} <span className="mx-1.5 text-brass">·</span>{" "}
                       {formatPrice(s.price_cents)}
                     </p>
-                    <Link href={`/book?service=${s.slug}`} className="link text-sm font-medium">
+                    <Link href={`/book?service=${s.slug}`} className="link tap text-sm font-medium">
                       Book<span className="sr-only"> {s.name}</span>
                     </Link>
                   </div>

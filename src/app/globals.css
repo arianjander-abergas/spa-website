@@ -116,6 +116,19 @@ body {
     text-decoration-color: var(--color-ink);
   }
 
+  /* Gives a small standalone link a finger-sized (44px) tap area on phones
+     without changing how it looks. */
+  .tap {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+  @media (min-width: 48rem) {
+    .tap {
+      min-height: 0;
+    }
+  }
+
   .field-label {
     display: block;
     font-size: 0.8125rem;

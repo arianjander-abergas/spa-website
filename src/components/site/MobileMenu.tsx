@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { nav, site } from "@/content/site";
 
 export function MobileMenu() {
@@ -38,10 +39,13 @@ export function MobileMenu() {
         </span>
       </button>
 
-      {open && (
+      {/* Rendered into <body>: the header's blur effect would otherwise trap
+          this full-screen panel inside the header's own box. */}
+      {open &&
+        createPortal(
         <div
           id="mobile-menu"
-          className="step-enter fixed inset-x-0 bottom-0 top-16 z-50 flex flex-col justify-between bg-paper px-5 pb-10 pt-8"
+          className="step-enter fixed inset-x-0 bottom-0 top-16 z-50 flex flex-col justify-between overflow-y-auto bg-paper px-5 pb-10 pt-4 md:hidden"
         >
           <nav aria-label="Mobile" className="flex flex-col">
             {[...nav, { href: "/book", label: "Book a treatment" }].map((item) => (
@@ -55,13 +59,14 @@ export function MobileMenu() {
               </Link>
             ))}
           </nav>
-          <p className="text-sm text-stone">
-            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="link">
-              {site.phone}
+          <p className="mt-8 text-sm text-stone">
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="link tap">
+              Call {site.phone}
             </a>
           </p>
-        </div>
-      )}
+        </div>,
+          document.body,
+        )}
     </div>
   );
 }

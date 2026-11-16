@@ -19,10 +19,10 @@ export function Footer() {
                 {line}
               </span>
             ))}
-            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="link mt-3 block w-fit">
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="link tap mt-2 !flex w-fit">
               {site.phone}
             </a>
-            <a href={`mailto:${site.email}`} className="link mt-1 block w-fit">
+            <a href={`mailto:${site.email}`} className="link tap !flex w-fit">
               {site.email}
             </a>
           </address>
@@ -35,11 +35,11 @@ export function Footer() {
 
         <nav aria-label="Footer">
           <h2 className="eyebrow mb-4">Explore</h2>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-0 text-sm md:space-y-2">
             {[...nav, { href: "/book", label: "Book a treatment" }, { href: "/policies", label: "Policies" }].map(
               (item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:underline underline-offset-4">
+                  <Link href={item.href} className="tap hover:underline underline-offset-4">
                     {item.label}
                   </Link>
                 </li>
@@ -53,7 +53,7 @@ export function Footer() {
           <p>
             © {site.name} {site.descriptor}
           </p>
-          <Link href="/admin" className="hover:underline underline-offset-4">
+          <Link href="/admin" className="tap w-fit hover:underline underline-offset-4">
             Staff sign in
           </Link>
         </div>
