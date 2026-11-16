@@ -4,5 +4,10 @@
   command = "npm run build"
   publish = ".next"
 
+# Netlify's Next.js support. Without it the build output is uploaded as plain
+# files and every page answers "Page not found".
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [build.environment]
   NODE_VERSION = "22"
