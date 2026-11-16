@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { TreatmentCard } from "@/components/site/TreatmentCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { getService, getServices } from "@/lib/data";
@@ -23,7 +24,30 @@ export async function generateMetadata({ params }: PageProps<"/treatments/[slug]
   };
 }
 
-export default async function TreatmentPage({ params }: PageProps<"/treatments/[slug]">) {
+// The treatment is read from the URL, so it sits behind Suspense: the shared
+// page shell (header, footer, this placeholder) shows instantly on navigation.
+export default function TreatmentPage({ params }: PageProps<"/treatments/[slug]">) {
+  return (
+    <Suspense fallback={<TreatmentSkeleton />}>
+      <Treatment params={params} />
+    </Suspense>
+  );
+}
+
+function TreatmentSkeleton() {
+  return (
+    <div className="container-page grid gap-10 py-10 md:grid-cols-2 md:gap-16 md:py-20" aria-busy="true">
+      <div className="aspect-[4/5] w-full bg-sand" />
+      <div className="flex flex-col justify-center gap-6">
+        <div className="h-3 w-40 bg-sand" />
+        <div className="h-12 w-3/4 bg-sand" />
+        <div className="h-24 w-full max-w-prose bg-sand" />
+      </div>
+    </div>
+  );
+}
+
+async function Treatment({ params }: Pick<PageProps<"/treatments/[slug]">, "params">) {
   const { slug } = await params;
   const [service, all] = await Promise.all([getService(slug), getServices()]);
   if (!service) notFound();
