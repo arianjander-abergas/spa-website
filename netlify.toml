@@ -1,0 +1,8 @@
+# Tells Netlify how to build the site. These override the settings in the
+# Netlify dashboard, so the build no longer depends on what was typed there.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
